@@ -1,0 +1,3863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VANTA — Casting & Creative Production</title>
+
+<style>
+
+:root {
+    --black: #050505;
+    --black2: #09090b;
+    --panel: #101013;
+    --panel2: #151518;
+    --white: #ffffff;
+    --muted: #9999a3;
+    --muted2: #6f6f78;
+    --line: rgba(255,255,255,.10);
+
+    --purple: #8b5cf6;
+    --purple2: #6d28d9;
+    --purple-light: #b794ff;
+
+    --gradient:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #c4b5fd 35%,
+            #8b5cf6 70%,
+            #6d28d9 100%
+        );
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--black);
+    color: var(--white);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+body,
+button,
+input,
+textarea,
+select {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+
+button {
+    cursor: pointer;
+}
+
+.page {
+    display: none;
+    min-height: calc(100vh - 82px);
+}
+
+.page.active {
+    display: block;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 82px;
+
+    background: rgba(5,5,5,.88);
+    backdrop-filter: blur(20px);
+
+    border-bottom: 1px solid var(--line);
+}
+
+.nav {
+    height: 100%;
+    max-width: 1400px;
+    margin: auto;
+
+    padding: 0 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 29px;
+    font-weight: 900;
+    letter-spacing: -1.8px;
+
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 27px;
+}
+
+.nav-links a {
+    color: #c7c7cc;
+    font-size: 13px;
+    transition: .2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active-link {
+    color: #ffffff;
+}
+
+.nav-actions {
+    display: flex;
+    gap: 9px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+    padding: 0 20px;
+
+    border-radius: 999px;
+    border: 1px solid var(--line);
+
+    font-size: 12px;
+    font-weight: 800;
+
+    transition: .25s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    color: white;
+    background: transparent;
+}
+
+.btn-purple {
+    color: white;
+    border: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b5cf6,
+            #6d28d9
+        );
+}
+
+.mobile-menu {
+    display: none;
+}
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+main {
+    padding-top: 82px;
+}
+
+.container {
+    width: min(1300px, calc(100% - 70px));
+    margin: auto;
+}
+
+.section {
+    padding: 110px 0;
+}
+
+.eyebrow {
+    color: var(--purple-light);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 10px;
+    font-weight: 900;
+    margin-bottom: 18px;
+}
+
+.section-heading {
+    max-width: 850px;
+    margin-bottom: 55px;
+}
+
+.section-heading h2 {
+    font-size: clamp(42px, 5vw, 70px);
+    letter-spacing: -4px;
+    line-height: .98;
+    margin-bottom: 22px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 16px;
+    max-width: 700px;
+}
+
+.purple {
+    color: var(--purple-light);
+}
+
+/* =========================================================
+   HOME
+========================================================= */
+
+.home-hero {
+    min-height: calc(100vh - 82px);
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.96) 0%,
+            rgba(0,0,0,.82) 48%,
+            rgba(0,0,0,.42) 100%
+        ),
+        url("https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=2200&q=90")
+        center / cover;
+}
+
+.home-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 80% 45%,
+            rgba(124,58,237,.25),
+            transparent 30%
+        );
+
+    pointer-events: none;
+}
+
+.home-content {
+    position: relative;
+    z-index: 2;
+
+    padding: 100px 0;
+}
+
+.home-content h1 {
+    max-width: 1000px;
+
+    font-size: clamp(55px, 8vw, 110px);
+    line-height: .9;
+    letter-spacing: -6px;
+
+    margin-bottom: 30px;
+}
+
+.home-content h1 span {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.home-content p {
+    max-width: 680px;
+
+    color: #c6c6cc;
+    font-size: 18px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    margin-top: 35px;
+}
+
+/* =========================================================
+   PROMINENT TRUST SECTION
+========================================================= */
+
+.trust-section {
+    position: relative;
+
+    padding: 90px 0;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(109,40,217,.24),
+            transparent 42%
+        ),
+        linear-gradient(
+            135deg,
+            #08080a,
+            #120b1d
+        );
+
+    border-top: 1px solid rgba(255,255,255,.12);
+    border-bottom: 1px solid rgba(255,255,255,.12);
+
+    text-align: center;
+}
+
+.trust-label {
+    color: var(--purple-light);
+
+    font-size: 11px;
+    font-weight: 900;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 38px;
+}
+
+.trust-grid {
+    max-width: 1100px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+
+    align-items: center;
+}
+
+.trust-item {
+    padding: 10px 30px;
+}
+
+.trust-item strong {
+    display: block;
+
+    font-size: clamp(42px, 6vw, 76px);
+    line-height: .9;
+    letter-spacing: -4px;
+
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.trust-item span {
+    display: block;
+
+    margin-top: 14px;
+
+    font-size: 13px;
+    letter-spacing: 4px;
+    font-weight: 800;
+
+    color: #d4d4d8;
+}
+
+.trust-divider {
+    width: 1px;
+    height: 85px;
+    background: rgba(255,255,255,.18);
+}
+
+.trust-description {
+    max-width: 650px;
+
+    margin: 40px auto 0;
+
+    color: #9999a3;
+    font-size: 14px;
+}
+
+/* =========================================================
+   HOME SERVICES
+========================================================= */
+
+.home-services {
+    padding: 110px 0;
+    background: #08080a;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 15px;
+}
+
+.service-card {
+    min-height: 260px;
+
+    padding: 28px;
+
+    background: var(--panel);
+
+    border: 1px solid var(--line);
+    border-radius: 18px;
+
+    transition: .3s;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(139,92,246,.55);
+}
+
+.service-number {
+    color: var(--purple-light);
+
+    font-size: 11px;
+    letter-spacing: 2px;
+
+    margin-bottom: 55px;
+}
+
+.service-card h3 {
+    font-size: 21px;
+    margin-bottom: 12px;
+}
+
+.service-card p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* =========================================================
+   INNER PAGE HERO
+========================================================= */
+
+.inner-hero {
+    padding: 125px 0 90px;
+
+    background:
+        radial-gradient(
+            circle at 75% 30%,
+            rgba(109,40,217,.18),
+            transparent 35%
+        ),
+        #070709;
+
+    border-bottom: 1px solid var(--line);
+}
+
+.inner-hero h1 {
+    max-width: 900px;
+
+    font-size: clamp(52px, 7vw, 95px);
+    line-height: .92;
+    letter-spacing: -5px;
+}
+
+.inner-hero h1 span {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.inner-hero p {
+    max-width: 700px;
+
+    margin-top: 25px;
+
+    color: var(--muted);
+    font-size: 17px;
+}
+
+/* =========================================================
+   INDUSTRIES
+========================================================= */
+
+.industry-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 14px;
+}
+
+.industry-card {
+    height: 410px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+}
+
+.industry-card img {
+    height: 100%;
+
+    transition: .5s;
+}
+
+.industry-card:hover img {
+    transform: scale(1.07);
+}
+
+.industry-card::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            transparent 30%,
+            rgba(0,0,0,.92)
+        );
+}
+
+.industry-info {
+    position: absolute;
+    z-index: 2;
+
+    bottom: 25px;
+    left: 25px;
+    right: 20px;
+}
+
+.industry-info h3 {
+    font-size: 25px;
+}
+
+.industry-info p {
+    color: #bdbdc4;
+    font-size: 12px;
+}
+
+/* =========================================================
+   HOW IT WORKS
+========================================================= */
+
+.workflow {
+    padding: 110px 0;
+    background: #08080a;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 18px;
+}
+
+.step {
+    padding-top: 20px;
+
+    border-top: 1px solid var(--line);
+}
+
+.step-number {
+    color: var(--purple-light);
+    font-size: 12px;
+    letter-spacing: 2px;
+
+    margin-bottom: 35px;
+}
+
+.step h3 {
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+
+.step p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.client-callout {
+    margin-top: 60px;
+
+    padding: 45px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #121216,
+            #170d27
+        );
+
+    border: 1px solid var(--line);
+}
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+.gallery-section {
+    padding: 100px 0;
+}
+
+.gallery-grid {
+    columns: 4 240px;
+    column-gap: 12px;
+}
+
+.gallery-grid img {
+    margin-bottom: 12px;
+    border-radius: 12px;
+
+    break-inside: avoid;
+}
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about-section {
+    padding: 110px 0;
+    background: #09090b;
+}
+
+.about-copy {
+    max-width: 950px;
+}
+
+.about-copy h2 {
+    color: var(--purple-light);
+
+    font-size: 12px;
+    letter-spacing: 4px;
+
+    margin-bottom: 18px;
+}
+
+.about-copy h1 {
+    font-size: clamp(45px, 6vw, 76px);
+    letter-spacing: -4px;
+    line-height: .95;
+
+    margin-bottom: 45px;
+}
+
+.about-copy p {
+    color: #b9b9c1;
+
+    font-size: 16px;
+    line-height: 1.85;
+
+    margin-bottom: 24px;
+}
+
+.fact-box {
+    margin-top: 50px;
+
+    padding: 30px;
+
+    border: 1px solid var(--line);
+    border-radius: 16px;
+
+    background: #101013;
+}
+
+.fact-box strong {
+    color: var(--purple-light);
+}
+
+/* =========================================================
+   CAREERS
+========================================================= */
+
+.careers-section {
+    padding: 110px 0;
+    background: #08080a;
+}
+
+.jobs {
+    display: grid;
+    gap: 12px;
+}
+
+.job-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding: 27px;
+
+    background: var(--panel);
+
+    border: 1px solid var(--line);
+    border-radius: 15px;
+
+    transition: .25s;
+}
+
+.job-card:hover {
+    transform: translateX(4px);
+    border-color: rgba(139,92,246,.5);
+}
+
+.job-info h3 {
+    font-size: 20px;
+    margin-bottom: 7px;
+}
+
+.job-meta {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.job-arrow {
+    color: var(--purple-light);
+    font-size: 22px;
+}
+
+/* =========================================================
+   JOB DETAIL
+========================================================= */
+
+.job-detail {
+    padding: 110px 0;
+    background: #08080a;
+}
+
+.back-link {
+    display: inline-block;
+
+    margin-bottom: 35px;
+
+    color: var(--purple-light);
+
+    font-size: 13px;
+}
+
+.job-detail-header {
+    max-width: 900px;
+
+    padding-bottom: 45px;
+
+    border-bottom: 1px solid var(--line);
+}
+
+.job-detail-header h1 {
+    font-size: clamp(45px, 6vw, 75px);
+    line-height: .95;
+    letter-spacing: -4px;
+
+    margin-bottom: 25px;
+}
+
+.detail-meta {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.detail-pill {
+    padding: 8px 13px;
+
+    border-radius: 999px;
+
+    border: 1px solid var(--line);
+
+    color: #c7c7cc;
+
+    font-size: 11px;
+}
+
+.job-detail-content {
+    max-width: 900px;
+
+    display: grid;
+    grid-template-columns: 1fr 280px;
+
+    gap: 70px;
+
+    padding-top: 50px;
+}
+
+.job-description h2 {
+    font-size: 25px;
+    margin: 35px 0 14px;
+}
+
+.job-description h2:first-child {
+    margin-top: 0;
+}
+
+.job-description p {
+    color: #aaaab3;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.job-description ul {
+    margin-left: 20px;
+}
+
+.job-description li {
+    color: #aaaab3;
+    margin-bottom: 9px;
+    font-size: 14px;
+}
+
+.job-sidebar {
+    height: fit-content;
+
+    padding: 25px;
+
+    background: #101013;
+
+    border: 1px solid var(--line);
+    border-radius: 16px;
+}
+
+.job-sidebar-label {
+    color: var(--muted2);
+
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    margin-bottom: 5px;
+}
+
+.job-sidebar-value {
+    margin-bottom: 25px;
+
+    font-size: 15px;
+}
+
+/* =========================================================
+   FORMS
+========================================================= */
+
+.form-page {
+    padding: 110px 0;
+    background: #050505;
+}
+
+.form-box {
+    max-width: 850px;
+    margin: auto;
+
+    padding: 42px;
+
+    background: var(--panel);
+
+    border: 1px solid var(--line);
+    border-radius: 22px;
+}
+
+.form-box h1 {
+    font-size: 45px;
+    letter-spacing: -2px;
+    margin-bottom: 10px;
+}
+
+.form-box > p {
+    color: var(--muted);
+    margin-bottom: 35px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.field.full {
+    grid-column: 1/-1;
+}
+
+.field label {
+    color: #b7b7bf;
+    font-size: 11px;
+}
+
+.field input,
+.field textarea,
+.field select {
+    width: 100%;
+
+    padding: 14px;
+
+    color: white;
+    background: #08080a;
+
+    border: 1px solid var(--line);
+    border-radius: 10px;
+
+    outline: none;
+}
+
+.field textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+    border-color: var(--purple);
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    padding: 65px 0 30px;
+
+    background: #030303;
+
+    border-top: 1px solid var(--line);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+
+    gap: 50px;
+}
+
+.footer-logo {
+    font-size: 35px;
+    font-weight: 900;
+    letter-spacing: -2px;
+
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    margin-bottom: 15px;
+}
+
+.footer-brand p {
+    max-width: 430px;
+
+    color: #72727a;
+    font-size: 13px;
+}
+
+footer h4 {
+    margin-bottom: 18px;
+
+    color: white;
+
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+footer ul {
+    list-style: none;
+}
+
+footer li {
+    margin-bottom: 9px;
+}
+
+footer li a {
+    color: #77777f;
+    font-size: 13px;
+}
+
+footer li a:hover {
+    color: white;
+}
+
+.copyright {
+    margin-top: 50px;
+    padding-top: 20px;
+
+    border-top: 1px solid var(--line);
+
+    color: #4d4d54;
+    font-size: 11px;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:1050px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .service-grid,
+    .industry-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .steps {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .job-detail-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width:650px) {
+
+    header {
+        height: 70px;
+    }
+
+    main {
+        padding-top: 70px;
+    }
+
+    .nav {
+        padding: 0 18px;
+    }
+
+    .logo {
+        font-size: 25px;
+    }
+
+    .nav-actions .btn {
+        min-height: 38px;
+        padding: 0 12px;
+        font-size: 10px;
+    }
+
+    .container {
+        width: min(100% - 40px, 1300px);
+    }
+
+    .home-content h1 {
+        font-size: 56px;
+        letter-spacing: -4px;
+    }
+
+    .trust-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .trust-divider {
+        width: 80px;
+        height: 1px;
+        margin: auto;
+    }
+
+    .service-grid,
+    .industry-grid,
+    .steps,
+    .form-grid,
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .industry-card {
+        height: 430px;
+    }
+
+    .job-card {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .form-box {
+        padding: 25px;
+    }
+
+    .job-detail-header h1 {
+        font-size: 48px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- =======================================================
+     HEADER
+======================================================= -->
+
+<header>
+
+<nav class="nav">
+
+<a href="#home" class="logo" onclick="showPage('home')">
+    VANTA
+</a>
+
+<div class="nav-links">
+
+<a href="#home" onclick="showPage('home')">Home</a>
+
+<a href="#industries" onclick="showPage('industries')">
+    Industries
+</a>
+
+<a href="#how-it-works" onclick="showPage('how-it-works')">
+    How It Works
+</a>
+
+<a href="#gallery" onclick="showPage('gallery')">
+    Gallery
+</a>
+
+<a href="#about" onclick="showPage('about')">
+    About
+</a>
+
+<a href="#careers" onclick="showPage('careers')">
+    Careers
+</a>
+
+</div>
+
+<div class="nav-actions">
+
+<a
+    href="#talent"
+    onclick="showPage('talent')"
+    class="btn btn-outline"
+>
+    Become a Talent
+</a>
+
+<a
+    href="#casting"
+    onclick="showPage('casting')"
+    class="btn btn-purple"
+>
+    Request a Casting
+</a>
+
+</div>
+
+</nav>
+
+</header>
+
+
+<main>
+
+
+<!-- =======================================================
+     HOME
+======================================================= -->
+
+<div class="page active" id="page-home">
+
+<section class="home-hero">
+
+<div class="container home-content">
+
+<div class="eyebrow">
+    Casting · Talent · Creative Production
+</div>
+
+<h1>
+    The right talent.<br>
+    <span>For the right vision.</span>
+</h1>
+
+<p>
+    VANTA is a Miami-based casting and creative production company
+    connecting brands, agencies and production teams with exceptional
+    talent across fashion, beauty, swimwear, intimate apparel,
+    advertising and media.
+</p>
+
+<div class="hero-buttons">
+
+<a
+    href="#casting"
+    onclick="showPage('casting')"
+    class="btn btn-purple"
+>
+    Request a Casting →
+</a>
+
+<a
+    href="#talent"
+    onclick="showPage('talent')"
+    class="btn btn-outline"
+>
+    Become a Talent
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PROMINENT TRUST -->
+
+<section class="trust-section">
+
+<div class="container">
+
+<div class="trust-label">
+    TRUSTED BY
+</div>
+
+<div class="trust-grid">
+
+<div class="trust-item">
+
+<strong>FORTUNE 500</strong>
+
+<span>
+    COMPANIES
+</span>
+
+</div>
+
+<div class="trust-divider"></div>
+
+<div class="trust-item">
+
+<strong>FORTUNE 100</strong>
+
+<span>
+    TEAMS
+</span>
+
+</div>
+
+</div>
+
+<p class="trust-description">
+    VANTA supports brands, agencies and creative teams operating
+    at the highest levels of the global commercial and creative industry.
+</p>
+
+</div>
+
+</section>
+
+
+<section class="home-services">
+
+<div class="container">
+
+<div class="section-heading">
+
+<div class="eyebrow">
+    What VANTA Does
+</div>
+
+<h2>
+    Talent acquisition built around the
+    <span class="purple">creative brief.</span>
+</h2>
+
+<p>
+    We source, curate and coordinate talent around the actual
+    requirements of the project — not simply a database of names.
+</p>
+
+</div>
+
+<div class="service-grid">
+
+<div class="service-card">
+
+<div class="service-number">
+    01 / SOURCING
+</div>
+
+<h3>
+    Talent Sourcing
+</h3>
+
+<p>
+    Identify models, actors, creators and specialized talent
+    aligned with the campaign.
+</p>
+
+</div>
+
+
+<div class="service-card">
+
+<div class="service-number">
+    02 / CURATION
+</div>
+
+<h3>
+    Talent Curation
+</h3>
+
+<p>
+    Turn a broad talent pool into a focused selection
+    built around the creative brief.
+</p>
+
+</div>
+
+
+<div class="service-card">
+
+<div class="service-number">
+    03 / COORDINATION
+</div>
+
+<h3>
+    Casting Coordination
+</h3>
+
+<p>
+    Manage communication, availability, submissions and
+    client review throughout the casting process.
+</p>
+
+</div>
+
+
+<div class="service-card">
+
+<div class="service-number">
+    04 / BOOKING
+</div>
+
+<h3>
+    Booking Support
+</h3>
+
+<p>
+    Help move selected talent from casting consideration
+    toward confirmed production.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- =======================================================
+     INDUSTRIES
+======================================================= -->
+
+<div class="page" id="page-industries">
+
+<section class="inner-hero">
+
+<div class="container">
+
+<div class="eyebrow">
+    Industries
+</div>
+
+<h1>
+    Talent for industries where
+    <span>visual identity matters.</span>
+</h1>
+
+<p>
+    VANTA works across commercial, editorial and creative
+    environments where the right talent can define the campaign.
+</p>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="container">
+
+<div class="industry-grid">
+
+
+<div class="industry-card">
+
+<img
+src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1000&q=85"
+alt="Fashion"
+/>
+
+<div class="industry-info">
+
+<h3>Fashion</h3>
+
+<p>
+    Editorial · Runway · Campaigns · E-commerce
+</p>
+
+</div>
+
+</div>
+
+
+<div class="industry-card">
+
+<img
+src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1000&q=85"
+alt="Beauty"
+/>
+
+<div class="industry-info">
+
+<h3>Beauty</h3>
+
+<p>
+    Cosmetics · Skincare · Hair · Beauty Campaigns
+</p>
+
+</div>
+
+</div>
+
+
+<div class="industry-card">
+
+<img
+src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=85"
+alt="Swimwear"
+/>
+
+<div class="industry-info">
+
+<h3>Swimwear</h3>
+
+<p>
+    Resort · Swim · Lifestyle · Campaign
+</p>
+
+</div>
+
+</div>
+
+
+<div class="industry-card">
+
+<img
+src="https://images.unsplash.com/photo-1555529771-835f59fc5efe?auto=format&fit=crop&w=1000&q=85"
+alt="Intimate apparel"
+/>
+
+<div class="industry-info">
+
+<h3>Intimate</h3>
+
+<p>
+    Lingerie · Intimate Apparel · Lifestyle
+</p>
+
+</div>
+
+</div>
+
+
+<div class="industry-card">
+
+<img
+src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=85"
+alt="Advertising"
+/>
+
+<div class="industry-info">
+
+<h3>Advertising</h3>
+
+<p>
+    Commercial · Brand Campaigns · Digital
+</p>
+
+</div>
+
+</div>
+
+
+<div class="industry-card">
+
+<img
+src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1000&q=85"
+alt="Media"
+/>
+
+<div class="industry-info">
+
+<h3>Media</h3>
+
+<p>
+    Film · Television · Digital · Editorial
+</p>
+
+</div>
+
+</div>
+
+
+<div class="industry-card">
+
+<img
+src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1000&q=85"
+alt="Lifestyle"
+/>
+
+<div class="industry-info">
+
+<h3>Lifestyle</h3>
+
+<p>
+    Travel · Hospitality · Wellness · Brands
+</p>
+
+</div>
+
+</div>
+
+
+<div class="industry-card">
+
+<img
+src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=1000&q=85"
+alt="Commercial"
+/>
+
+<div class="industry-info">
+
+<h3>Commercial</h3>
+
+<p>
+    Corporate · Product · Social · Content
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- =======================================================
+     HOW IT WORKS
+======================================================= -->
+
+<div class="page" id="page-how-it-works">
+
+<section class="inner-hero">
+
+<div class="container">
+
+<div class="eyebrow">
+    How It Works
+</div>
+
+<h1>
+    From brief to
+    <span>booking.</span>
+</h1>
+
+<p>
+    A structured casting workflow designed to reduce unnecessary
+    searching and deliver talent that fits the project.
+</p>
+
+</div>
+
+</section>
+
+
+<section class="workflow">
+
+<div class="container">
+
+<div class="steps">
+
+
+<div class="step">
+
+<div class="step-number">
+    01
+</div>
+
+<h3>
+    Submit the Brief
+</h3>
+
+<p>
+    Tell us about the campaign, talent requirements,
+    dates, location and creative direction.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">
+    02
+</div>
+
+<h3>
+    We Source
+</h3>
+
+<p>
+    Our team searches our talent network for
+    appropriate candidates.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">
+    03
+</div>
+
+<h3>
+    We Curate
+</h3>
+
+<p>
+    Talent is reviewed against the brief,
+    requirements and creative direction.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">
+    04
+</div>
+
+<h3>
+    Client Review
+</h3>
+
+<p>
+    The client receives a focused selection
+    of talent for consideration.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">
+    05
+</div>
+
+<h3>
+    Booking
+</h3>
+
+<p>
+    Once talent is selected, VANTA helps coordinate
+    availability and confirmation.
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="client-callout">
+
+<div class="eyebrow">
+    For Brands & Creative Teams
+</div>
+
+<h2>
+    Ready to brief VANTA?
+</h2>
+
+<p style="color:#9999a3; margin:15px 0 25px;">
+    Send us the project requirements and our team can
+    begin reviewing the opportunity.
+</p>
+
+<a
+href="#casting"
+onclick="showPage('casting')"
+class="btn btn-purple"
+>
+    Submit a Brief →
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- =======================================================
+     GALLERY
+======================================================= -->
+
+<div class="page" id="page-gallery">
+
+<section class="inner-hero">
+
+<div class="container">
+
+<div class="eyebrow">
+    Gallery
+</div>
+
+<h1>
+    Creative environments.
+    <span>Real talent.</span>
+</h1>
+
+<p>
+    A visual look at the industries, environments and creative
+    worlds represented across the VANTA network.
+</p>
+
+</div>
+
+</section>
+
+
+<section class="gallery-section">
+
+<div class="container">
+
+<div class="gallery-grid">
+
+<img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85" alt="Fashion campaign">
+
+<img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=85" alt="Fashion editorial">
+
+<img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=900&q=85" alt="Model editorial">
+
+<img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=85" alt="Fashion production">
+
+<img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=85" alt="Swimwear">
+
+<img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=900&q=85" alt="Beauty">
+
+<img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=900&q=85" alt="Media">
+
+<img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=85" alt="Creative production">
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- =======================================================
+     ABOUT
+======================================================= -->
+
+<div class="page" id="page-about">
+
+<section class="inner-hero">
+
+<div class="container">
+
+<div class="eyebrow">
+    About VANTA
+</div>
+
+<h1>
+    Born in Miami.
+    <span>Built for the global creative industry.</span>
+</h1>
+
+</div>
+
+</section>
+
+
+<section class="about-section">
+
+<div class="container">
+
+<div class="about-copy">
+<p>
+VANTA was founded in Miami five years ago with a clear purpose:
+to make the casting process more efficient, more intentional and
+better aligned with the creative vision behind every campaign.
+</p>
+
+
+<p>
+What began with a simple observation — that brands and agencies
+were spending too much time searching through endless talent lists —
+became a specialized casting and creative production company built
+around finding the right person for the right project.
+</p>
+
+
+<p>
+Today, VANTA works across fashion, swimwear, intimate apparel,
+beauty, skincare, lifestyle, advertising and commercial production.
+We partner with brands, advertising agencies, production companies,
+photographers, creative directors and other creative teams to source,
+curate, cast, coordinate and book talent.
+</p>
+
+
+<p>
+Our approach combines a strong understanding of talent with organized
+production support. We don't simply provide a list of names. We take
+the brief, understand the creative direction, identify the right talent,
+manage the casting process and help move the project from initial
+request to confirmed booking and production.
+</p>
+
+
+<p>
+Based in Miami and connected to a broader creative network, VANTA is
+built for teams that value speed, precision, professionalism and talent
+that genuinely fits the vision.
+</p>
+
+
+<div class="fact-box">
+
+<strong>
+VANTA FACT:
+</strong>
+
+Miami was the starting point. The creative network was always
+meant to be much bigger.
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- =======================================================
+     CAREERS
+======================================================= -->
+
+<div class="page" id="page-careers">
+
+<section class="inner-hero">
+
+<div class="container">
+
+<div class="eyebrow">
+    Careers
+</div>
+
+<h1>
+    Build what
+    <span>comes next.</span>
+</h1>
+
+<p>
+    Join a team building a more organized, responsive and
+    creatively aligned approach to talent acquisition.
+</p>
+
+</div>
+
+</section>
+
+
+<section class="careers-section">
+
+<div class="container">
+
+<div class="jobs">
+
+
+<div class="job-card" onclick="openJob('senior-director')">
+
+<div class="job-info">
+
+<h3>
+    Senior Director of Talent & Casting
+</h3>
+
+<div class="job-meta">
+    <span>Remote — USA</span>
+    <span>Full-time</span>
+</div>
+
+</div>
+
+<div class="job-arrow">
+    →
+</div>
+
+</div>
+
+
+<div class="job-card" onclick="openJob('talent-acquisition')">
+
+<div class="job-info">
+
+<h3>
+    Talent Acquisition Manager
+</h3>
+
+<div class="job-meta">
+    <span>Remote — USA</span>
+    <span>Full-time</span>
+</div>
+
+</div>
+
+<div class="job-arrow">
+    →
+</div>
+
+</div>
+
+
+<div class="job-card" onclick="openJob('casting-producer')">
+
+<div class="job-info">
+
+<h3>
+    Casting Producer
+</h3>
+
+<div class="job-meta">
+    <span>Remote — USA</span>
+    <span>Full-time</span>
+</div>
+
+</div>
+
+<div class="job-arrow">
+    →
+</div>
+
+</div>
+
+
+<div class="job-card" onclick="openJob('client-partnerships')">
+
+<div class="job-info">
+
+<h3>
+    Client Partnerships Manager
+</h3>
+
+<div class="job-meta">
+    <span>Remote — USA</span>
+    <span>Full-time</span>
+</div>
+
+</div>
+
+<div class="job-arrow">
+    →
+</div>
+
+</div>
+
+
+<div class="job-card" onclick="openJob('talent-booker')">
+
+<div class="job-info">
+
+<h3>
+    Talent Booker
+</h3>
+
+<div class="job-meta">
+    <span>Remote — USA</span>
+    <span>Full-time</span>
+</div>
+
+</div>
+
+<div class="job-arrow">
+    →
+</div>
+
+</div>
+
+
+<div class="job-card" onclick="openJob('production-coordinator')">
+
+<div class="job-info">
+
+<h3>
+    Creative Production Coordinator
+</h3>
+
+<div class="job-meta">
+    <span>Remote — USA</span>
+    <span>Full-time</span>
+</div>
+
+</div>
+
+<div class="job-arrow">
+    →
+</div>
+
+</div>
+
+
+<div class="job-card" onclick="openJob('talent-relations')">
+
+<div class="job-info">
+
+<h3>
+    Talent Relations Specialist
+</h3>
+
+<div class="job-meta">
+    <span>Remote — USA</span>
+    <span>Full-time</span>
+</div>
+
+</div>
+
+<div class="job-arrow">
+    →
+</div>
+
+</div>
+
+
+<div class="job-card" onclick="openJob('casting-assistant')">
+
+<div class="job-info">
+
+<h3>
+    Casting Assistant
+</h3>
+
+<div class="job-meta">
+    <span>Remote — USA</span>
+    <span>Full-time</span>
+</div>
+
+</div>
+
+<div class="job-arrow">
+    →
+</div>
+
+</div>
+
+
+<div class="job-card" onclick="openJob('marketing')">
+
+<div class="job-info">
+
+<h3>
+    Marketing & Brand Coordinator
+</h3>
+
+<div class="job-meta">
+    <span>Remote — USA</span>
+    <span>Full-time</span>
+</div>
+
+</div>
+
+<div class="job-arrow">
+    →
+</div>
+
+</div>
+
+
+<div class="job-card" onclick="openJob('operations')">
+
+<div class="job-info">
+
+<h3>
+    Operations Coordinator
+</h3>
+
+<div class="job-meta">
+    <span>Remote — USA</span>
+    <span>Full-time</span>
+</div>
+
+</div>
+
+<div class="job-arrow">
+    →
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- =======================================================
+     JOB DETAIL
+======================================================= -->
+
+<div class="page" id="page-job-detail">
+
+<section class="job-detail">
+
+<div class="container">
+
+<a
+href="#careers"
+onclick="showPage('careers')"
+class="back-link"
+>
+← Back to Careers
+</a>
+
+
+<div class="job-detail-header">
+
+<h1 id="jobTitle">
+    Job Title
+</h1>
+
+<div class="detail-meta">
+
+<div class="detail-pill" id="jobLocation">
+    Remote — USA
+</div>
+
+<div class="detail-pill" id="jobType">
+    Full-time
+</div>
+
+</div>
+
+</div>
+
+
+<div class="job-detail-content">
+
+
+<div class="job-description">
+
+<h2>
+    Compensation
+</h2>
+
+<p id="jobSalary">
+    Salary information
+</p>
+
+
+<h2>
+    About the Role
+</h2>
+
+<p id="jobDescription">
+</p>
+
+
+<h2>
+    Responsibilities
+</h2>
+
+<ul id="jobResponsibilities">
+</ul>
+
+
+<h2>
+    Requirements
+</h2>
+
+<ul id="jobRequirements">
+</ul>
+
+
+<h2>
+    What You'll Bring
+</h2>
+
+<ul id="jobQualifications">
+</ul>
+
+
+<br>
+
+<a
+href="#"
+id="jobApplyButton"
+class="btn btn-purple"
+>
+    Apply for This Position →
+</a>
+
+</div>
+
+
+<aside class="job-sidebar">
+
+<div class="job-sidebar-label">
+    Location
+</div>
+
+<div
+class="job-sidebar-value"
+id="sideLocation"
+>
+    Remote — USA
+</div>
+
+
+<div class="job-sidebar-label">
+    Employment
+</div>
+
+<div
+class="job-sidebar-value"
+id="sideType"
+>
+    Full-time
+</div>
+
+
+<div class="job-sidebar-label">
+    Salary
+</div>
+
+<div
+class="job-sidebar-value"
+id="sideSalary"
+>
+    —
+</div>
+
+</aside>
+
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- =======================================================
+     REQUEST A CASTING
+======================================================= -->
+
+<div class="page" id="page-casting">
+
+<section class="inner-hero">
+
+<div class="container">
+
+<div class="eyebrow">
+    For Brands · Agencies · Production Teams
+</div>
+
+<h1>
+    Have a project?
+    <span>Let's cast it.</span>
+</h1>
+
+<p>
+    Tell VANTA what you're creating, who you need and what
+    the production requires.
+</p>
+
+</div>
+
+</section>
+
+
+<section class="form-page">
+
+<div class="container">
+
+<div class="form-box">
+
+<h1>
+    Request a Casting
+</h1>
+
+<p>
+    Complete the brief below. Submitting the form will open
+    your default email application with the information prepared
+    for VANTA.
+</p>
+
+
+<form onsubmit="sendCastingEmail(event)">
+
+<div class="form-grid">
+
+
+<div class="field">
+
+<label>
+    Company / Agency
+</label>
+
+<input
+id="company"
+required
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    Your Name
+</label>
+
+<input
+id="clientName"
+required
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    Email
+</label>
+
+<input
+id="clientEmail"
+type="email"
+required
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    Project / Campaign
+</label>
+
+<input
+id="project"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    Industry
+</label>
+
+<select id="industry">
+
+<option>Fashion</option>
+<option>Beauty</option>
+<option>Swimwear</option>
+<option>Intimate Apparel</option>
+<option>Advertising</option>
+<option>Media</option>
+<option>Lifestyle</option>
+<option>Commercial</option>
+<option>Other</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    Talent Needed
+</label>
+
+<input
+id="talentNeeded"
+placeholder="Models, actors, creators..."
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    Location
+</label>
+
+<input
+id="location"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    Production Date
+</label>
+
+<input
+id="date"
+type="date"
+>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+    Project Brief
+</label>
+
+<textarea
+id="brief"
+placeholder="Creative direction, talent requirements, usage, budget, dates, location and anything else we should know."
+></textarea>
+
+</div>
+
+
+</div>
+
+
+<br>
+
+<button
+class="btn btn-purple"
+type="submit"
+>
+Send Casting Request →
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- =======================================================
+     BECOME A TALENT
+======================================================= -->
+
+<div class="page" id="page-talent">
+
+<section class="inner-hero">
+
+<div class="container">
+
+<div class="eyebrow">
+    Talent
+</div>
+
+<h1>
+    Become part of
+    <span>VANTA.</span>
+</h1>
+
+<p>
+    Submit your information to be considered for future
+    casting opportunities across our creative network.
+</p>
+
+</div>
+
+</section>
+
+
+<section class="form-page">
+
+<div class="container">
+
+<div class="form-box">
+
+<h1>
+    Become a VANTA Talent
+</h1>
+
+<p>
+    Complete your profile below. Your email application will
+    open automatically with your information prepared for review.
+</p>
+
+
+<form onsubmit="sendTalentEmail(event)">
+
+<div class="form-grid">
+
+
+<div class="field">
+
+<label>
+    Full Name
+</label>
+
+<input
+id="talentName"
+required
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    Email
+</label>
+
+<input
+id="talentEmail"
+type="email"
+required
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    Phone
+</label>
+
+<input
+id="talentPhone"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    City / State
+</label>
+
+<input
+id="talentLocation"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    Talent Type
+</label>
+
+<select id="talentType">
+
+<option>Model</option>
+<option>Actor</option>
+<option>Creator</option>
+<option>Influencer</option>
+<option>Commercial Talent</option>
+<option>Other</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    Portfolio / Instagram
+</label>
+
+<input
+id="portfolio"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    Height
+</label>
+
+<input
+id="height"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+    Experience
+</label>
+
+<input
+id="experience"
+>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+    Tell Us About You
+</label>
+
+<textarea
+id="talentBio"
+placeholder="Tell us about your experience, specialties and the types of projects you're interested in."
+></textarea>
+
+</div>
+
+
+</div>
+
+
+<br>
+
+<button
+class="btn btn-purple"
+type="submit"
+>
+Submit Talent Profile →
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+</main>
+
+
+<!-- =======================================================
+     FOOTER
+======================================================= -->
+
+<footer>
+
+<div class="container">
+
+<div class="footer-grid">
+
+
+<div class="footer-brand">
+
+<div class="footer-logo">
+    VANTA
+</div>
+
+<p>
+    Miami-based casting and creative production for fashion,
+    swimwear, intimate apparel, beauty, advertising and
+    commercial campaigns.
+</p>
+
+</div>
+
+
+<div>
+
+<h4>
+    Company
+</h4>
+
+<ul>
+
+<li>
+<a href="#home" onclick="showPage('home')">
+    Home
+</a>
+</li>
+
+<li>
+<a href="#industries" onclick="showPage('industries')">
+    Industries
+</a>
+</li>
+
+<li>
+<a href="#how-it-works" onclick="showPage('how-it-works')">
+    How It Works
+</a>
+</li>
+
+<li>
+<a href="#gallery" onclick="showPage('gallery')">
+    Gallery
+</a>
+</li>
+
+<li>
+<a href="#about" onclick="showPage('about')">
+    About
+</a>
+</li>
+
+<li>
+<a href="#careers" onclick="showPage('careers')">
+    Careers
+</a>
+</li>
+
+</ul>
+
+</div>
+
+
+<div>
+
+<h4>
+    Talent
+</h4>
+
+<ul>
+
+<li>
+<a href="#talent" onclick="showPage('talent')">
+    Become a Talent
+</a>
+</li>
+
+<li>
+<a href="#talent" onclick="showPage('talent')">
+    Apply for Casting
+</a>
+</li>
+
+</ul>
+
+</div>
+
+
+<div>
+
+<h4>
+    Client
+</h4>
+
+<ul>
+
+<li>
+<a href="#casting" onclick="showPage('casting')">
+    Request a Casting
+</a>
+</li>
+
+<li>
+<a href="#how-it-works" onclick="showPage('how-it-works')">
+    How It Works
+</a>
+</li>
+
+</ul>
+
+</div>
+
+
+</div>
+
+
+<div class="copyright">
+
+© 2026 VANTA. All rights reserved. · Miami, Florida
+
+</div>
+
+</div>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
+
+function showPage(pageName) {
+
+    const pages = document.querySelectorAll(".page");
+
+    pages.forEach(page => {
+        page.classList.remove("active");
+    });
+
+    const selectedPage =
+        document.getElementById("page-" + pageName);
+
+    if (selectedPage) {
+        selectedPage.classList.add("active");
+    }
+
+    window.scrollTo({
+        top: 0,
+        behavior: "instant"
+    });
+
+    updateNavigation(pageName);
+}
+
+
+/* =========================================================
+   ACTIVE NAV
+========================================================= */
+
+function updateNavigation(pageName) {
+
+    const links =
+        document.querySelectorAll(".nav-links a");
+
+    links.forEach(link => {
+        link.classList.remove("active-link");
+    });
+
+    const matchingLink =
+        document.querySelector(
+            '.nav-links a[href="#' + pageName + '"]'
+        );
+
+    if (matchingLink) {
+        matchingLink.classList.add("active-link");
+    }
+}
+
+
+/* =========================================================
+   JOB DATABASE
+========================================================= */
+
+const jobs = {
+
+    "senior-director": {
+
+        title:
+            "Senior Director of Talent & Casting",
+
+        location:
+            "Remote — USA",
+
+        type:
+            "Full-time",
+
+        salary:
+            "$100,000 – $135,000 + performance incentives",
+
+        description:
+            "The Senior Director of Talent & Casting will lead VANTA's talent acquisition and casting strategy across major client campaigns. This position combines senior-level talent relationships, casting direction, client communication and operational leadership. The successful candidate will help shape how VANTA identifies, develops and delivers talent for fashion, beauty, swimwear, intimate apparel, advertising and commercial projects.",
+
+        responsibilities: [
+
+            "Lead casting strategy for major client campaigns and productions.",
+
+            "Build and maintain relationships with models, actors, creators, agencies and talent representatives.",
+
+            "Translate client briefs into clear talent requirements and casting strategies.",
+
+            "Oversee talent sourcing, curation, submissions and client presentation.",
+
+            "Manage senior relationships with brands, agencies and production companies.",
+
+            "Guide casting producers and talent acquisition team members.",
+
+            "Develop processes that improve casting speed, accuracy and client experience.",
+
+            "Participate in negotiations, booking discussions and production coordination."
+
+        ],
+
+        requirements: [
+
+            "7+ years of professional experience in casting, talent management, recruiting, production or a related creative field.",
+
+            "Strong knowledge of the fashion, advertising, beauty, media or commercial production ecosystem.",
+
+            "Demonstrated experience managing high-value client or talent relationships.",
+
+            "Excellent written and verbal communication skills.",
+
+            "Strong organizational and project management ability.",
+
+            "Ability to operate independently in a remote environment.",
+
+            "United States-based and authorized to work in the United States."
+
+        ],
+
+        qualifications: [
+
+            "Strategic thinking combined with strong operational execution.",
+
+            "High level of discretion and professionalism.",
+
+            "Strong understanding of talent positioning and client needs.",
+
+            "Comfort working across multiple simultaneous campaigns.",
+
+            "A strong network within creative production or talent industries is highly valued."
+
+        ]
+
+    },
+
+
+    "talent-acquisition": {
+
+        title:
+            "Talent Acquisition Manager",
+
+        location:
+            "Remote — USA",
+
+        type:
+            "Full-time",
+
+        salary:
+            "$75,000 – $95,000",
+
+        description:
+            "The Talent Acquisition Manager is responsible for identifying and developing relationships with models, actors, creators and other specialized talent. This role sits at the center of VANTA's talent network and ensures client briefs are matched with qualified and relevant candidates.",
+
+        responsibilities: [
+
+            "Source talent across established and emerging creative networks.",
+
+            "Review portfolios, profiles and submissions.",
+
+            "Maintain an organized talent database.",
+
+            "Build long-term relationships with talent.",
+
+            "Match talent to active client briefs.",
+
+            "Coordinate talent submissions and availability.",
+
+            "Support casting strategy and client presentations."
+
+        ],
+
+        requirements: [
+
+            "3+ years of recruiting, casting, talent acquisition or related experience.",
+
+            "Excellent communication skills.",
+
+            "Strong organizational skills.",
+
+            "Comfort working with CRM or talent-management systems.",
+
+            "United States-based."
+
+        ],
+
+        qualifications: [
+
+            "Strong eye for talent.",
+
+            "Professional communication style.",
+
+            "Ability to evaluate candidates against specific requirements.",
+
+            "Strong attention to detail."
+
+        ]
+
+    },
+
+
+    "casting-producer": {
+
+        title:
+            "Casting Producer",
+
+        location:
+            "Remote — USA",
+
+        type:
+            "Full-time",
+
+        salary:
+            "$65,000 – $82,000",
+
+        description:
+            "The Casting Producer manages casting projects from brief intake through client review. The position coordinates talent research, submissions, scheduling, communications and project documentation.",
+
+        responsibilities: [
+
+            "Review client briefs.",
+
+            "Coordinate casting timelines.",
+
+            "Research and shortlist talent.",
+
+            "Prepare talent submissions.",
+
+            "Communicate with clients and talent.",
+
+            "Track availability and casting status.",
+
+            "Maintain project records."
+
+        ],
+
+        requirements: [
+
+            "2+ years of casting, production, recruiting or project coordination experience.",
+
+            "Strong organizational ability.",
+
+            "Excellent written communication.",
+
+            "Ability to manage multiple deadlines.",
+
+            "United States-based."
+
+        ],
+
+        qualifications: [
+
+            "Production-minded.",
+
+            "Detail oriented.",
+
+            "Comfortable working remotely.",
+
+            "Creative industry experience preferred."
+
+        ]
+
+    },
+
+
+    "client-partnerships": {
+
+        title:
+            "Client Partnerships Manager",
+
+        location:
+            "Remote — USA",
+
+        type:
+            "Full-time",
+
+        salary:
+            "$65,000 – $90,000",
+
+        description:
+            "The Client Partnerships Manager develops relationships with brands, agencies, production companies and creative teams. This role helps introduce VANTA's casting services to new clients while maintaining existing relationships.",
+
+        responsibilities: [
+
+            "Develop new client relationships.",
+
+            "Manage inbound opportunities.",
+
+            "Understand client casting requirements.",
+
+            "Coordinate internal casting resources.",
+
+            "Maintain ongoing client communication.",
+
+            "Support proposals and new business initiatives."
+
+        ],
+
+        requirements: [
+
+            "3+ years of sales, account management, partnerships or business development experience.",
+
+            "Excellent communication skills.",
+
+            "Strong relationship-building ability.",
+
+            "Ability to understand creative briefs.",
+
+            "United States-based."
+
+        ],
+
+        qualifications: [
+
+            "Professional and confident communication.",
+
+            "Strong commercial awareness.",
+
+            "Self-directed work style.",
+
+            "Creative industry experience preferred."
+
+        ]
+
+    },
+
+
+    "talent-booker": {
+
+        title:
+            "Talent Booker",
+
+        location:
+            "Remote — USA",
+
+        type:
+            "Full-time",
+
+        salary:
+            "$55,000 – $70,000",
+
+        description:
+            "The Talent Booker coordinates talent availability, booking communications and confirmations between clients, talent and production teams.",
+
+        responsibilities: [
+
+            "Coordinate talent availability.",
+
+            "Manage booking communications.",
+
+            "Confirm production details.",
+
+            "Maintain booking records.",
+
+            "Communicate schedule changes.",
+
+            "Support talent and client relationships."
+
+        ],
+
+        requirements: [
+
+            "2+ years of booking, casting, staffing or coordination experience.",
+
+            "Excellent organization.",
+
+            "Strong communication skills.",
+
+            "United States-based."
+
+        ],
+
+        qualifications: [
+
+            "Reliable and responsive.",
+
+            "Detail oriented.",
+
+            "Comfortable managing multiple projects."
+
+        ]
+
+    },
+
+
+    "production-coordinator": {
+
+        title:
+            "Creative Production Coordinator",
+
+        location:
+            "Remote — USA",
+
+        type:
+            "Full-time",
+
+        salary:
+            "$50,000 – $65,000",
+
+        description:
+            "The Creative Production Coordinator supports campaign logistics and helps ensure talent requirements, schedules and production information remain organized throughout a project.",
+
+        responsibilities: [
+
+            "Coordinate project information.",
+
+            "Track production schedules.",
+
+            "Assist with talent logistics.",
+
+            "Maintain project documentation.",
+
+            "Support casting producers.",
+
+            "Coordinate communications."
+
+        ],
+
+        requirements: [
+
+            "1–3 years of production or coordination experience.",
+
+            "Strong organizational skills.",
+
+            "Ability to manage deadlines.",
+
+            "United States-based."
+
+        ],
+
+        qualifications: [
+
+            "Excellent attention to detail.",
+
+            "Comfortable with digital collaboration tools.",
+
+            "Professional communication."
+
+        ]
+
+    },
+
+
+    "talent-relations": {
+
+        title:
+            "Talent Relations Specialist",
+
+        location:
+            "Remote — USA",
+
+        type:
+            "Full-time",
+
+        salary:
+            "$48,000 – $62,000",
+
+        description:
+            "The Talent Relations Specialist helps maintain VANTA's relationships with models, actors, creators and other talent while keeping profiles and availability information current.",
+
+        responsibilities: [
+
+            "Communicate with talent.",
+
+            "Maintain talent profiles.",
+
+            "Update availability information.",
+
+            "Assist with onboarding.",
+
+            "Support casting submissions.",
+
+            "Maintain talent records."
+
+        ],
+
+        requirements: [
+
+            "1+ year of talent relations, recruiting, customer service or similar experience.",
+
+            "Excellent communication.",
+
+            "Strong organizational skills.",
+
+            "United States-based."
+
+        ],
+
+        qualifications: [
+
+            "Professional interpersonal skills.",
+
+            "Responsive and organized.",
+
+            "Interest in creative industries."
+
+        ]
+
+    },
+
+
+    "casting-assistant": {
+
+        title:
+            "Casting Assistant",
+
+        location:
+            "Remote — USA",
+
+        type:
+            "Full-time",
+
+        salary:
+            "$42,000 – $52,000",
+
+        description:
+            "The Casting Assistant supports VANTA's casting team with research, submissions, scheduling, talent communication and administrative tasks.",
+
+        responsibilities: [
+
+            "Research potential talent.",
+
+            "Assist with submissions.",
+
+            "Organize casting information.",
+
+            "Support scheduling.",
+
+            "Assist casting producers.",
+
+            "Maintain accurate records."
+
+        ],
+
+        requirements: [
+
+            "Strong organizational skills.",
+
+            "Excellent communication.",
+
+            "Ability to learn quickly.",
+
+            "United States-based."
+
+        ],
+
+        qualifications: [
+
+            "Interest in fashion, media, advertising or production.",
+
+            "Strong attention to detail.",
+
+            "Professional attitude."
+
+        ]
+
+    },
+
+
+    "marketing": {
+
+        title:
+            "Marketing & Brand Coordinator",
+
+        location:
+            "Remote — USA",
+
+        type:
+            "Full-time",
+
+        salary:
+            "$45,000 – $60,000",
+
+        description:
+            "The Marketing & Brand Coordinator supports VANTA's brand positioning, social media, content, partnerships and marketing initiatives.",
+
+        responsibilities: [
+
+            "Support social media strategy.",
+
+            "Coordinate marketing content.",
+
+            "Assist partnership initiatives.",
+
+            "Maintain brand materials.",
+
+            "Support campaign launches.",
+
+            "Research industry trends."
+
+        ],
+
+        requirements: [
+
+            "1–3 years of marketing or communications experience.",
+
+            "Strong writing ability.",
+
+            "Digital marketing familiarity.",
+
+            "United States-based."
+
+        ],
+
+        qualifications: [
+
+            "Strong visual and written communication.",
+
+            "Interest in fashion, media or creative industries.",
+
+            "Strong organizational skills."
+
+        ]
+
+    },
+
+
+    "operations": {
+
+        title:
+            "Operations Coordinator",
+
+        location:
+            "Remote — USA",
+
+        type:
+            "Full-time",
+
+        salary:
+            "$45,000 – $58,000",
+
+        description:
+            "The Operations Coordinator supports internal workflows, project administration, scheduling and documentation across VANTA's casting operations.",
+
+        responsibilities: [
+
+            "Maintain internal project systems.",
+
+            "Coordinate schedules.",
+
+            "Organize documentation.",
+
+            "Support operational workflows.",
+
+            "Track project progress.",
+
+            "Assist leadership and production teams."
+
+        ],
+
+        requirements: [
+
+            "1–3 years of operations or administrative experience.",
+
+            "Strong organizational ability.",
+
+            "Excellent communication.",
+
+            "United States-based."
+
+        ],
+
+        qualifications: [
+
+            "Highly organized.",
+
+            "Reliable.",
+
+            "Comfortable working independently.",
+
+            "Strong attention to detail."
+
+        ]
+
+    }
+
+};
+
+
+/* =========================================================
+   OPEN JOB
+========================================================= */
+
+function openJob(jobId) {
+
+    const job = jobs[jobId];
+
+    if (!job) {
+        return;
+    }
+
+    document.getElementById("jobTitle").textContent =
+        job.title;
+
+    document.getElementById("jobLocation").textContent =
+        job.location;
+
+    document.getElementById("jobType").textContent =
+        job.type;
+
+    document.getElementById("jobSalary").textContent =
+        job.salary;
+
+    document.getElementById("jobDescription").textContent =
+        job.description;
+
+    document.getElementById("sideLocation").textContent =
+        job.location;
+
+    document.getElementById("sideType").textContent =
+        job.type;
+
+    document.getElementById("sideSalary").textContent =
+        job.salary;
+
+
+    const responsibilities =
+        document.getElementById("jobResponsibilities");
+
+    responsibilities.innerHTML = "";
+
+    job.responsibilities.forEach(item => {
+
+        const li =
+            document.createElement("li");
+
+        li.textContent = item;
+
+        responsibilities.appendChild(li);
+
+    });
+
+
+    const requirements =
+        document.getElementById("jobRequirements");
+
+    requirements.innerHTML = "";
+
+    job.requirements.forEach(item => {
+
+        const li =
+            document.createElement("li");
+
+        li.textContent = item;
+
+        requirements.appendChild(li);
+
+    });
+
+
+    const qualifications =
+        document.getElementById("jobQualifications");
+
+    qualifications.innerHTML = "";
+
+    job.qualifications.forEach(item => {
+
+        const li =
+            document.createElement("li");
+
+        li.textContent = item;
+
+        qualifications.appendChild(li);
+
+    });
+
+
+    const applyButton =
+        document.getElementById("jobApplyButton");
+
+    applyButton.href =
+        "mailto:vantatalent@yahoo.com?subject=" +
+        encodeURIComponent(
+            "Application - " + job.title
+        ) +
+        "&body=" +
+        encodeURIComponent(
+`VANTA JOB APPLICATION
+
+Position:
+${job.title}
+
+Name:
+
+Email:
+
+Phone:
+
+Resume / Portfolio:
+
+Why are you interested in this position?
+
+Relevant experience:
+`
+        );
+
+
+    showPage("job-detail");
+
+}
+
+
+/* =========================================================
+   CASTING EMAIL
+========================================================= */
+
+function sendCastingEmail(event) {
+
+    event.preventDefault();
+
+    const company =
+        document.getElementById("company").value;
+
+    const clientName =
+        document.getElementById("clientName").value;
+
+    const clientEmail =
+        document.getElementById("clientEmail").value;
+
+    const project =
+        document.getElementById("project").value;
+
+    const industry =
+        document.getElementById("industry").value;
+
+    const talentNeeded =
+        document.getElementById("talentNeeded").value;
+
+    const location =
+        document.getElementById("location").value;
+
+    const date =
+        document.getElementById("date").value;
+
+    const brief =
+        document.getElementById("brief").value;
+
+
+    const subject =
+        "VANTA Casting Request - " +
+        (project || company);
+
+
+    const body =
+`VANTA CASTING REQUEST
+
+COMPANY / AGENCY:
+${company}
+
+CONTACT NAME:
+${clientName}
+
+EMAIL:
+${clientEmail}
+
+PROJECT / CAMPAIGN:
+${project}
+
+INDUSTRY:
+${industry}
+
+TALENT NEEDED:
+${talentNeeded}
+
+LOCATION:
+${location}
+
+PRODUCTION DATE:
+${date}
+
+PROJECT BRIEF:
+${brief}
+`;
+
+
+    window.location.href =
+        "mailto:vantatalent@yahoo.com" +
+        "?subject=" +
+        encodeURIComponent(subject) +
+        "&body=" +
+        encodeURIComponent(body);
+
+}
+
+
+/* =========================================================
+   TALENT EMAIL
+========================================================= */
+
+function sendTalentEmail(event) {
+
+    event.preventDefault();
+
+    const name =
+        document.getElementById("talentName").value;
+
+    const email =
+        document.getElementById("talentEmail").value;
+
+    const phone =
+        document.getElementById("talentPhone").value;
+
+    const location =
+        document.getElementById("talentLocation").value;
+
+    const type =
+        document.getElementById("talentType").value;
+
+    const portfolio =
+        document.getElementById("portfolio").value;
+
+    const height =
+        document.getElementById("height").value;
+
+    const experience =
+        document.getElementById("experience").value;
+
+    const bio =
+        document.getElementById("talentBio").value;
+
+
+    const subject =
+        "VANTA Talent Application - " +
+        name;
+
+
+    const body =
+`VANTA TALENT APPLICATION
+
+FULL NAME:
+${name}
+
+EMAIL:
+${email}
+
+PHONE:
+${phone}
+
+CITY / STATE:
+${location}
+
+TALENT TYPE:
+${type}
+
+PORTFOLIO / INSTAGRAM:
+${portfolio}
+
+HEIGHT:
+${height}
+
+EXPERIENCE:
+${experience}
+
+ABOUT THE TALENT:
+${bio}
+`;
+
+
+    window.location.href =
+        "mailto:vantatalent@yahoo.com" +
+        "?subject=" +
+        encodeURIComponent(subject) +
+        "&body=" +
+        encodeURIComponent(body);
+
+}
+
+
+/* =========================================================
+   INITIAL PAGE
+========================================================= */
+
+window.addEventListener("load", function() {
+
+    const hash =
+        window.location.hash.replace("#","");
+
+    const validPages = [
+        "home",
+        "industries",
+        "how-it-works",
+        "gallery",
+        "about",
+        "careers",
+        "casting",
+        "talent"
+    ];
+
+    if (validPages.includes(hash)) {
+        showPage(hash);
+    } else {
+        showPage("home");
+    }
+
+});
+
+</script>
+
+</body>
+</html>
